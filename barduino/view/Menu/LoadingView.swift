@@ -1,24 +1,20 @@
-//
-//  LoadingView.swift
-//  barduino
-//
-//  Created by Rafael Gorayb Correa on 27/10/24.
-//
 import SwiftUI
 
 struct LoadingView: View {
     @Binding var navigateToRoot: Bool
-    @State private var isRotating = false
-    @State private var isScaling = false
-    @Environment(\.dismiss) var presentationManager
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: DrinkViewModel
     @Namespace var namespace
 
+    // Variáveis de estado para animação
+    @State private var isRotating = false
+    @State private var isScaling = false
+
     var body: some View {
-        VStack(spacing: 20) { // Espaçamento consistente entre elementos
-            if viewModel.recommendedDrink.isEmpty {
+        VStack(spacing: 20) {
+            if viewModel.recommendedDrink == nil {
                 // Indicador de carregamento
-                VStack(spacing: 16) { // Espaçamento entre imagem e texto de carregamento
+                VStack(spacing: 16) {
                     Image(systemName: "apple.intelligence")
                         .foregroundStyle(.purple)
                         .rotationEffect(.degrees(isRotating ? 360 : 0))
@@ -30,7 +26,6 @@ struct LoadingView: View {
                             withAnimation(.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
                                 isScaling = true
                             }
-                            viewModel.getRecommendation()
                         }
 
                     Text("Carregando...")
@@ -43,34 +38,24 @@ struct LoadingView: View {
                     VStack(spacing: 24) {
                         // Drink recomendado
                         VStack(spacing: 12) {
-                            if let recommendedDrink = viewModel.topDrinks.first {
-                                Text("Drink recomendado:")
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
+                            Text("Drink recomendado:")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+
+                            if let recommendedDrink = viewModel.recommendedDrink {
                                 DrinkListItem(drink: recommendedDrink, namespace: namespace)
-                                    .padding(.bottom, 8) // Espaçamento adicional abaixo do card
-                                Text(viewModel.recommendedDrink)
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
-                                    
+                                
                             }
                         }
 
                         // Outros drinks recomendados
-                        VStack(spacing: 12) {
-                            HStack{
-                                Text("Outros drinks recomendados:")
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                            }
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 16) {
-                                    ForEach(viewModel.topDrinks.dropFirst(), id: \.id) { drink in
-                                        DrinkListItem(drink: drink, namespace: namespace)
-                                            
-                                    }
-                                }
+                        HStack(spacing: 12) {
+                            Text("Outros drinks recomendados:")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+
+                            ForEach(viewModel.topDrinks.dropFirst(), id: \.id) { drink in
+                                DrinkListItem(drink: drink, namespace: namespace)
                             }
                         }
                     }
@@ -79,12 +64,15 @@ struct LoadingView: View {
             }
 
             Button("Fechar") {
-                self.presentationManager()
+                self.dismiss()
             }
             .buttonStyle(.borderedProminent)
             .padding(.top, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea()) // Background geral para diferenciar a view
+        .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
+        .onDisappear{
+            viewModel.recommendedDrink = nil
+        }
     }
 }

@@ -1,17 +1,64 @@
-//
-//  AiDrinkView.swift
-//  barduino
-//
-//  Created by Rafael Gorayb Correa on 25/10/24.
-//
-
 import SwiftUI
 
+// Estrutura que representa cada pergunta
+struct QuestionData {
+    let questionText: String
+    let options: [String]
+    let keyPath: ReferenceWritableKeyPath<DrinkViewModel, String>
+}
+
 struct AiDrinkView: View {
-    @State private var preferences: [String] = Array(repeating: "", count: 4)
+    @State private var currentQuestionIndex = 0
     @State private var navigateToLoading = false
-    @Binding var navigateToRoot: Bool // Referência ao estado de navegação para
+    @Binding var navigateToRoot: Bool
     @ObservedObject var viewModel: DrinkViewModel
+
+    // Lista de perguntas
+    let questions: [QuestionData]
+
+    init(navigateToRoot: Binding<Bool>, viewModel: DrinkViewModel) {
+        self._navigateToRoot = navigateToRoot
+        self.viewModel = viewModel
+
+        // Inicializa as perguntas com o texto, opções e a propriedade correspondente no ViewModel
+        self.questions = [
+            QuestionData(
+                questionText: "Qual é o seu humor hoje?",
+                options: ["Relaxado", "Animado", "Tranquilo", "Ansioso"],
+                keyPath: \DrinkViewModel.mood
+            ),
+            QuestionData(
+                questionText: "Você prefere algo mais:",
+                options: ["Doce", "Azedo", "Amargo"],
+                keyPath: \DrinkViewModel.flavorPreference
+            ),
+            QuestionData(
+                questionText: "Prefiro um sabor:",
+                options: ["Cítrico", "Frutado", "Herbal"],
+                keyPath: \DrinkViewModel.flavorStyle
+            ),
+            QuestionData(
+                questionText: "Prefere sua bebida:",
+                options: ["Bem gelada", "Temperatura ambiente", "Sem preferência"],
+                keyPath: \DrinkViewModel.servingTemperature
+            ),
+            QuestionData(
+                questionText: "Você está buscando uma experiência mais:",
+                options: ["Elegante", "Extrovertida", "Casual"],
+                keyPath: \DrinkViewModel.experienceType
+            ),
+            QuestionData(
+                questionText: "Está de dieta?",
+                options: ["Tanto faz", "Baixo açúcar", "Sem Açucar"],
+                keyPath: \DrinkViewModel.dietaryRestriction
+            ),
+            QuestionData(
+                questionText: "Bebida base",
+                options: ["Vodka", "Gin", "Tequila", "Tanto faz", "Sem álcool"],
+                keyPath: \DrinkViewModel.baseType
+            ),
+        ]
+    }
 
     var body: some View {
         NavigationStack {
@@ -25,104 +72,120 @@ struct AiDrinkView: View {
                     .fontWeight(.semibold)
                     .padding(10)
 
-                // Usando o componente de pergunta reutilizável
-                QuestionView(questionText: "Qual é o seu animo hoje?",
-                             option1: "Animado",
-                             option2: "Tranquilo",
-                             selection: $viewModel.mood)
+                // Barra de progresso
+                Text("Pergunta: \(currentQuestionIndex + 1)")
+                ProgressView(value: progress)
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
 
-                QuestionView(questionText: "Prefere sabores mais:",
-                             option1: "Doce",
-                             option2: "Amargo/Azedo",
-                             selection: $viewModel.flavorPreference)
+                // Verifica se ainda há perguntas
+                if currentQuestionIndex < questions.count {
+                    let question = questions[currentQuestionIndex]
+                    let selectionBinding = Binding<String>(
+                        get: { self.viewModel[keyPath: question.keyPath] },
+                        set: { newValue in
+                            self.viewModel[keyPath: question.keyPath] = newValue
+                            // Avança para a próxima pergunta ao selecionar uma opção
+                            withAnimation {
+                                self.currentQuestionIndex += 1
+                            }
+                        }
+                    )
 
-                QuestionView(questionText: "Está disposto a uma experiencia mais:",
-                             option1: "Clássica",
-                             option2: "Diferenciada",
-                             selection: $viewModel.experienceProfile)
+                    QuestionView(
+                        questionText: question.questionText,
+                        options: question.options,
+                        selection: selectionBinding
+                    )
+                } else {
+                    // Todas as perguntas foram respondidas, mostra o resumo e o botão para enviar
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text("Respostas escolhidas:")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .padding(.bottom, 10)
 
-                QuestionView(questionText: "Prefere bebidas: ",
-                             option1: "Com álcool",
-                             option2: "Sem álcool",
-                             selection: $viewModel.alcoholicPreference)
-                
-                QuestionView(questionText: "Quer algo para:",
-                             option1: "Saborear lentamente",
-                             option2: "Se refrescar",
-                             selection: $viewModel.drinkPace)
+                            ForEach(questions, id: \.questionText) { question in
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(question.questionText)
+                                        .font(.headline)
+                                    Text(viewModel[keyPath: question.keyPath])
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            }
 
-                Spacer()
+                            Spacer()
 
-                // Botão para enviar e navegar para LoadingView
-                Button(action: {
-                    navigateToLoading = true // Ativa a navegação para a LoadingView
-                    viewModel.getRecommendation()
-                }, label: {
-                    Text("Enviar")
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color.purple)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .foregroundStyle(.white)
-                        .font(.title3)
+                            Button(action: {
+                                navigateToLoading = true
+                                viewModel.getRecommendation()
+                            }, label: {
+                                Text("Enviar")
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 50)
+                                    .background(Color.purple)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .foregroundStyle(.white)
+                                    .font(.title3)
+                                    .padding()
+                            })
+                            .navigationDestination(isPresented: $navigateToLoading) {
+                                LoadingView(navigateToRoot: $navigateToRoot, viewModel: viewModel)
+                            }
+                        }
                         .padding()
-                        .opacity(viewModel.isSelected() ? 1 : 0.7)
-                })
-                .disabled(!viewModel.isSelected())
+                    }
+                }
             }
-            .navigationDestination(isPresented: $navigateToLoading) {
-                LoadingView(navigateToRoot: $navigateToRoot, viewModel: viewModel)
-            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.purple.opacity(0.1))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.purple.opacity(0.1))
+    }
+
+    // Cálculo do progresso
+    private var progress: Double {
+        Double(currentQuestionIndex) / Double(questions.count)
     }
 }
 
 struct QuestionView: View {
     var questionText: String
-    var option1: String
-    var option2: String
+    var options: [String]
     @Binding var selection: String
+
+    // Layout do grid com 2 colunas
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
         VStack(alignment: .leading) {
             Text(questionText)
                 .font(.headline)
-                .padding(.bottom, 2)
-            
-            HStack {
-                Button(option1) {
-                    selection = option1
+                .padding(.bottom, 10)
+
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(options, id: \.self) { option in
+                    Button(action: {
+                        selection = option
+                    }) {
+                        Text(option)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .padding()
+                            .background(selection == option ? Color.purple.opacity(0.2) : Color.gray.opacity(0.2))
+                            .foregroundColor(.black)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
                 }
-                .buttonStyle(OptionButtonStyle(isSelected: selection == option1))
-                
-                Button(option2) {
-                    selection = option2
-                }
-                .buttonStyle(OptionButtonStyle(isSelected: selection == option2))
             }
         }
         .padding()
     }
 }
 
-
-struct OptionButtonStyle: ButtonStyle {
-    var isSelected: Bool
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(isSelected ? Color.purple.opacity(0.2) : Color.gray.opacity(0.2))
-            .foregroundColor(isSelected ? .black.opacity(0.8) : .black)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
-
-
 #Preview {
     AiDrinkView(navigateToRoot: .constant(false), viewModel: DrinkViewModel())
-    
 }
