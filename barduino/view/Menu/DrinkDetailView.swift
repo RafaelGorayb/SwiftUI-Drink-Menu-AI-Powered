@@ -54,7 +54,6 @@ struct DrinkDetailView: View {
                 }
                 .padding(.top, 5)
             }
-            .padding()
 
 
             Button(action: {

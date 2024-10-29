@@ -73,7 +73,9 @@ struct AiDrinkView: View {
                     .padding(10)
 
                 // Barra de progresso
-                Text("Pergunta: \(currentQuestionIndex + 1)")
+                if currentQuestionIndex < 8 {
+                    Text("Pergunta: \(currentQuestionIndex + 1)/7")
+                }
                 ProgressView(value: progress)
                     .padding(.horizontal)
                     .padding(.bottom, 20)
@@ -176,7 +178,7 @@ struct QuestionView: View {
                             .frame(maxWidth: .infinity, minHeight: 44)
                             .padding()
                             .background(selection == option ? Color.purple.opacity(0.2) : Color.gray.opacity(0.2))
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }

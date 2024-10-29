@@ -1,6 +1,11 @@
 import Foundation
 import SwiftUI
 
+struct DrinkRecommendation {
+    let drink: Drink
+    let explanation: String
+}
+
 class DrinkViewModel: ObservableObject {
     // Variáveis para controlar a animação de loading das ondas do copo
     @Published var percent: Double = 30.0
@@ -16,6 +21,7 @@ class DrinkViewModel: ObservableObject {
 
     // Variáveis do resultado da recomendação
     @Published var recommendedDrink: Drink? = nil
+    @Published var recommendations: [DrinkRecommendation] = []
     @Published var topDrinks: [Drink] = []
 
     var drinks_menu: [Drink] = []
@@ -114,59 +120,62 @@ class DrinkViewModel: ObservableObject {
     }
 
     
-    // Função para processar o resultado do prompt e popular as variáveis recommendedDrink e topDrinks
-    func processGPTResponse(_ response: String?) {
-        guard let response = response else {
-            print("Nenhuma resposta do GPT")
-            return
-        }
-
-        // Pré-processar a resposta para extrair o conteúdo JSON
-        let jsonString = extractJSON(from: response)
-
-        guard let data = jsonString.data(using: .utf8) else {
-            print("Falha ao converter a resposta em dados")
-            print("Resposta do GPT: \(response)")
-            return
-        }
-
-        do {
-            let decoder = JSONDecoder()
-            struct GPTResponse: Codable {
-                struct Recommendation: Codable {
-                    let drink_name: String
-                    let explanation: String
-                }
-                let recommendations: [Recommendation]
-            }
-            let gptResponse = try decoder.decode(GPTResponse.self, from: data)
-            let recommendedDrinkNames = gptResponse.recommendations.map { $0.drink_name }
-
-            // Criar um dicionário para correspondência rápida dos drinks pelo nome
-            let drinkNameToDrink = Dictionary(uniqueKeysWithValues: self.drinks_menu.map { ($0.name.lowercased(), $0) })
-
-            var recommendedDrinks: [Drink] = []
-            for name in recommendedDrinkNames {
-                let lowercasedName = name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-                if let drink = drinkNameToDrink[lowercasedName] {
-                    recommendedDrinks.append(drink)
-                } else {
-                    print("Drink não encontrado no menu: \(name)")
-                }
+    // Função para processar o resultado do prompt e popular as variáveis
+        func processGPTResponse(_ response: String?) {
+            guard let response = response else {
+                print("Nenhuma resposta do GPT")
+                return
             }
 
-            DispatchQueue.main.async {
-                self.topDrinks = recommendedDrinks
-                if let firstDrink = recommendedDrinks.first {
-                    self.recommendedDrink = firstDrink
-                }
-            }
-        } catch {
-            print("Falha ao analisar a resposta do GPT: \(error)")
-            print("Resposta do GPT: \(response)")
-        }
-    }
+            // Pré-processar a resposta para extrair o conteúdo JSON
+            let jsonString = extractJSON(from: response)
 
+            guard let data = jsonString.data(using: .utf8) else {
+                print("Falha ao converter a resposta em dados")
+                print("Resposta do GPT: \(response)")
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                struct GPTResponse: Codable {
+                    struct Recommendation: Codable {
+                        let drink_name: String
+                        let explanation: String
+                    }
+                    let recommendations: [Recommendation]
+                }
+                let gptResponse = try decoder.decode(GPTResponse.self, from: data)
+                let gptRecommendations = gptResponse.recommendations
+
+                // Criar um dicionário para correspondência rápida dos drinks pelo nome
+                let drinkNameToDrink = Dictionary(uniqueKeysWithValues: self.drinks_menu.map { ($0.name.lowercased(), $0) })
+
+                var recommendations: [DrinkRecommendation] = []
+                for gptRecommendation in gptRecommendations {
+                    let name = gptRecommendation.drink_name
+                    let explanation = gptRecommendation.explanation
+                    let lowercasedName = name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+                    if let drink = drinkNameToDrink[lowercasedName] {
+                        let drinkRecommendation = DrinkRecommendation(drink: drink, explanation: explanation)
+                        recommendations.append(drinkRecommendation)
+                    } else {
+                        print("Drink não encontrado no menu: \(name)")
+                    }
+                }
+
+                DispatchQueue.main.async {
+                    self.recommendations = recommendations
+                    if let firstRecommendation = recommendations.first {
+                        self.recommendedDrink = firstRecommendation.drink
+                    }
+                    self.topDrinks = recommendations.map { $0.drink }
+                }
+            } catch {
+                print("Falha ao analisar a resposta do GPT: \(error)")
+                print("Resposta do GPT: \(response)")
+            }
+        }
 
     // Função principal para obter a recomendação
     func getRecommendation() {

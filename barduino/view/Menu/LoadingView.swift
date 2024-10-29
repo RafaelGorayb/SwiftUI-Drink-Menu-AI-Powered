@@ -37,25 +37,36 @@ struct LoadingView: View {
                 ScrollView {
                     VStack(spacing: 24) {
                         // Drink recomendado
-                        VStack(spacing: 12) {
-                            Text("Drink recomendado:")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-
-                            if let recommendedDrink = viewModel.recommendedDrink {
-                                DrinkListItem(drink: recommendedDrink, namespace: namespace)
-                                
+                        if let firstRecommendation = viewModel.recommendations.first {
+                            VStack(spacing: 12) {
+                                Text("Drink recomendado:")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                DrinkListItem(drink: firstRecommendation.drink, namespace: namespace)
+                                Text(firstRecommendation.explanation)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .padding(.top, 4)
                             }
                         }
 
                         // Outros drinks recomendados
+                        if viewModel.recommendations.count > 1 {
+                            
+                                Text("Outros drinks recomendados:")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
                         HStack(spacing: 12) {
-                            Text("Outros drinks recomendados:")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-
-                            ForEach(viewModel.topDrinks.dropFirst(), id: \.id) { drink in
-                                DrinkListItem(drink: drink, namespace: namespace)
+                                ForEach(viewModel.recommendations.dropFirst(), id: \.drink.id) { recommendation in
+                                    VStack {
+                                        DrinkListItem(drink: recommendation.drink, namespace: namespace)
+                                        Text(recommendation.explanation)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                            .padding(.top, 4)
+                                    }
+                                    .padding(.bottom, 16)
+                                }
                             }
                         }
                     }
@@ -71,8 +82,11 @@ struct LoadingView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
-        .onDisappear{
-            viewModel.recommendedDrink = nil
+        .onAppear {
+            // Inicia a recomendação ao carregar a view
+            if viewModel.recommendedDrink == nil {
+                viewModel.getRecommendation()
+            }
         }
     }
 }
