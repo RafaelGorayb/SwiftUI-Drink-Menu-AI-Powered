@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		800B6CF92A8BF8E400452011 /* barduinoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6CF82A8BF8E400452011 /* barduinoApp.swift */; };
+		800B6CFB2A8BF8E400452011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6CFA2A8BF8E400452011 /* ContentView.swift */; };
+		800B6CFD2A8BF8E600452011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800B6CFC2A8BF8E600452011 /* Assets.xcassets */; };
+		800B6D002A8BF8E600452011 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800B6CFF2A8BF8E600452011 /* Preview Assets.xcassets */; };
+		800B6D0A2A8BF8E600452011 /* barduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D092A8BF8E600452011 /* barduinoTests.swift */; };
+		800B6D142A8BF8E600452011 /* barduinoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D132A8BF8E600452011 /* barduinoUITests.swift */; };
+		800B6D162A8BF8E600452011 /* barduinoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D152A8BF8E600452011 /* barduinoUITestsLaunchTests.swift */; };
+		800B6D282A8BFAFC00452011 /* DrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D272A8BFAFC00452011 /* DrinkViewModel.swift */; };
+		800B6D2A2A8BFBEB00452011 /* DrinkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D292A8BFBEB00452011 /* DrinkListView.swift */; };
+		800B6D2C2A8C057500452011 /* DrinkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D2B2A8C057500452011 /* DrinkDetailView.swift */; };
+		800B6D2E2A8CEF0A00452011 /* DrinkWaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D2D2A8CEF0A00452011 /* DrinkWaitingView.swift */; };
+		800B6D302A8D016500452011 /* CustomWaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B6D2F2A8D016500452011 /* CustomWaveShape.swift */; };
+		8093454B2CCBD988009ABAF6 /* DrinkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8093454A2CCBD988009ABAF6 /* DrinkListItem.swift */; };
+		8093454D2CCBE9A7009ABAF6 /* AiDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8093454C2CCBE9A7009ABAF6 /* AiDrinkView.swift */; };
+		809345512CCEFC65009ABAF6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809345502CCEFC65009ABAF6 /* LoadingView.swift */; };
+		809345532CCEFDFF009ABAF6 /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809345522CCEFDFF009ABAF6 /* OpenAIResponse.swift */; };
+		809345552CCF0964009ABAF6 /* EmbeddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809345542CCF0964009ABAF6 /* EmbeddingService.swift */; };
+		8093455A2CD083C7009ABAF6 /* drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809345592CD083C7009ABAF6 /* drink.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		800B6D062A8BF8E600452011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 800B6CED2A8BF8E400452011 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 800B6CF42A8BF8E400452011;
+			remoteInfo = barduino;
+		};
+		800B6D102A8BF8E600452011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 800B6CED2A8BF8E400452011 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 800B6CF42A8BF8E400452011;
+			remoteInfo = barduino;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		800B6CF52A8BF8E400452011 /* barduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barduino.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		800B6CF82A8BF8E400452011 /* barduinoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = barduinoApp.swift; sourceTree = "<group>"; };
+		800B6CFA2A8BF8E400452011 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		800B6CFC2A8BF8E600452011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		800B6CFF2A8BF8E600452011 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		800B6D052A8BF8E600452011 /* barduinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = barduinoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		800B6D092A8BF8E600452011 /* barduinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = barduinoTests.swift; sourceTree = "<group>"; };
+		800B6D0F2A8BF8E600452011 /* barduinoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = barduinoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		800B6D132A8BF8E600452011 /* barduinoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = barduinoUITests.swift; sourceTree = "<group>"; };
+		800B6D152A8BF8E600452011 /* barduinoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = barduinoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		800B6D272A8BFAFC00452011 /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
+		800B6D292A8BFBEB00452011 /* DrinkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListView.swift; sourceTree = "<group>"; };
+		800B6D2B2A8C057500452011 /* DrinkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailView.swift; sourceTree = "<group>"; };
+		800B6D2D2A8CEF0A00452011 /* DrinkWaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkWaitingView.swift; sourceTree = "<group>"; };
+		800B6D2F2A8D016500452011 /* CustomWaveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWaveShape.swift; sourceTree = "<group>"; };
+		8093454A2CCBD988009ABAF6 /* DrinkListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListItem.swift; sourceTree = "<group>"; };
+		8093454C2CCBE9A7009ABAF6 /* AiDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiDrinkView.swift; sourceTree = "<group>"; };
+		809345502CCEFC65009ABAF6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		809345522CCEFDFF009ABAF6 /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
+		809345542CCF0964009ABAF6 /* EmbeddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingService.swift; sourceTree = "<group>"; };
+		809345592CD083C7009ABAF6 /* drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drink.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		800B6CF22A8BF8E400452011 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D022A8BF8E600452011 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D0C2A8BF8E600452011 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		800B6CEC2A8BF8E400452011 = {
+			isa = PBXGroup;
+			children = (
+				809345562CCF27D9009ABAF6 /* coredata */,
+				800B6CF72A8BF8E400452011 /* barduino */,
+				800B6D082A8BF8E600452011 /* barduinoTests */,
+				800B6D122A8BF8E600452011 /* barduinoUITests */,
+				800B6CF62A8BF8E400452011 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		800B6CF62A8BF8E400452011 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				800B6CF52A8BF8E400452011 /* barduino.app */,
+				800B6D052A8BF8E600452011 /* barduinoTests.xctest */,
+				800B6D0F2A8BF8E600452011 /* barduinoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		800B6CF72A8BF8E400452011 /* barduino */ = {
+			isa = PBXGroup;
+			children = (
+				800B6D252A8BF9CA00452011 /* view */,
+				800B6D222A8BF8F100452011 /* model */,
+				8093454F2CCEFBCB009ABAF6 /* Components */,
+				800B6D262A8BF9D400452011 /* viewModel */,
+				800B6CF82A8BF8E400452011 /* barduinoApp.swift */,
+				800B6CFA2A8BF8E400452011 /* ContentView.swift */,
+				800B6CFC2A8BF8E600452011 /* Assets.xcassets */,
+				800B6CFE2A8BF8E600452011 /* Preview Content */,
+			);
+			path = barduino;
+			sourceTree = "<group>";
+		};
+		800B6CFE2A8BF8E600452011 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				800B6CFF2A8BF8E600452011 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		800B6D082A8BF8E600452011 /* barduinoTests */ = {
+			isa = PBXGroup;
+			children = (
+				800B6D092A8BF8E600452011 /* barduinoTests.swift */,
+			);
+			path = barduinoTests;
+			sourceTree = "<group>";
+		};
+		800B6D122A8BF8E600452011 /* barduinoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				800B6D132A8BF8E600452011 /* barduinoUITests.swift */,
+				800B6D152A8BF8E600452011 /* barduinoUITestsLaunchTests.swift */,
+			);
+			path = barduinoUITests;
+			sourceTree = "<group>";
+		};
+		800B6D222A8BF8F100452011 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				809345592CD083C7009ABAF6 /* drink.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		800B6D252A8BF9CA00452011 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8093454E2CCEFBC5009ABAF6 /* Menu */,
+				800B6D2D2A8CEF0A00452011 /* DrinkWaitingView.swift */,
+				800B6D2F2A8D016500452011 /* CustomWaveShape.swift */,
+				8093454A2CCBD988009ABAF6 /* DrinkListItem.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		800B6D262A8BF9D400452011 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				809345542CCF0964009ABAF6 /* EmbeddingService.swift */,
+				809345522CCEFDFF009ABAF6 /* OpenAIResponse.swift */,
+				800B6D272A8BFAFC00452011 /* DrinkViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		8093454E2CCEFBC5009ABAF6 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				809345502CCEFC65009ABAF6 /* LoadingView.swift */,
+				800B6D292A8BFBEB00452011 /* DrinkListView.swift */,
+				800B6D2B2A8C057500452011 /* DrinkDetailView.swift */,
+				8093454C2CCBE9A7009ABAF6 /* AiDrinkView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		8093454F2CCEFBCB009ABAF6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		809345562CCF27D9009ABAF6 /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = coredata;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		800B6CF42A8BF8E400452011 /* barduino */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800B6D192A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduino" */;
+			buildPhases = (
+				800B6CF12A8BF8E400452011 /* Sources */,
+				800B6CF22A8BF8E400452011 /* Frameworks */,
+				800B6CF32A8BF8E400452011 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = barduino;
+			productName = barduino;
+			productReference = 800B6CF52A8BF8E400452011 /* barduino.app */;
+			productType = "com.apple.product-type.application";
+		};
+		800B6D042A8BF8E600452011 /* barduinoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800B6D1C2A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduinoTests" */;
+			buildPhases = (
+				800B6D012A8BF8E600452011 /* Sources */,
+				800B6D022A8BF8E600452011 /* Frameworks */,
+				800B6D032A8BF8E600452011 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				800B6D072A8BF8E600452011 /* PBXTargetDependency */,
+			);
+			name = barduinoTests;
+			productName = barduinoTests;
+			productReference = 800B6D052A8BF8E600452011 /* barduinoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		800B6D0E2A8BF8E600452011 /* barduinoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800B6D1F2A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduinoUITests" */;
+			buildPhases = (
+				800B6D0B2A8BF8E600452011 /* Sources */,
+				800B6D0C2A8BF8E600452011 /* Frameworks */,
+				800B6D0D2A8BF8E600452011 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				800B6D112A8BF8E600452011 /* PBXTargetDependency */,
+			);
+			name = barduinoUITests;
+			productName = barduinoUITests;
+			productReference = 800B6D0F2A8BF8E600452011 /* barduinoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		800B6CED2A8BF8E400452011 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					800B6CF42A8BF8E400452011 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					800B6D042A8BF8E600452011 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 800B6CF42A8BF8E400452011;
+					};
+					800B6D0E2A8BF8E600452011 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 800B6CF42A8BF8E400452011;
+					};
+				};
+			};
+			buildConfigurationList = 800B6CF02A8BF8E400452011 /* Build configuration list for PBXProject "barduino" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 800B6CEC2A8BF8E400452011;
+			productRefGroup = 800B6CF62A8BF8E400452011 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				800B6CF42A8BF8E400452011 /* barduino */,
+				800B6D042A8BF8E600452011 /* barduinoTests */,
+				800B6D0E2A8BF8E600452011 /* barduinoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		800B6CF32A8BF8E400452011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800B6D002A8BF8E600452011 /* Preview Assets.xcassets in Resources */,
+				800B6CFD2A8BF8E600452011 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D032A8BF8E600452011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D0D2A8BF8E600452011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		800B6CF12A8BF8E400452011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800B6CFB2A8BF8E400452011 /* ContentView.swift in Sources */,
+				800B6CF92A8BF8E400452011 /* barduinoApp.swift in Sources */,
+				809345512CCEFC65009ABAF6 /* LoadingView.swift in Sources */,
+				8093455A2CD083C7009ABAF6 /* drink.swift in Sources */,
+				8093454D2CCBE9A7009ABAF6 /* AiDrinkView.swift in Sources */,
+				800B6D2A2A8BFBEB00452011 /* DrinkListView.swift in Sources */,
+				809345532CCEFDFF009ABAF6 /* OpenAIResponse.swift in Sources */,
+				809345552CCF0964009ABAF6 /* EmbeddingService.swift in Sources */,
+				800B6D2C2A8C057500452011 /* DrinkDetailView.swift in Sources */,
+				800B6D2E2A8CEF0A00452011 /* DrinkWaitingView.swift in Sources */,
+				800B6D282A8BFAFC00452011 /* DrinkViewModel.swift in Sources */,
+				800B6D302A8D016500452011 /* CustomWaveShape.swift in Sources */,
+				8093454B2CCBD988009ABAF6 /* DrinkListItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D012A8BF8E600452011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800B6D0A2A8BF8E600452011 /* barduinoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800B6D0B2A8BF8E600452011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800B6D162A8BF8E600452011 /* barduinoUITestsLaunchTests.swift in Sources */,
+				800B6D142A8BF8E600452011 /* barduinoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		800B6D072A8BF8E600452011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 800B6CF42A8BF8E400452011 /* barduino */;
+			targetProxy = 800B6D062A8BF8E600452011 /* PBXContainerItemProxy */;
+		};
+		800B6D112A8BF8E600452011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 800B6CF42A8BF8E400452011 /* barduino */;
+			targetProxy = 800B6D102A8BF8E600452011 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		800B6D172A8BF8E600452011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		800B6D182A8BF8E600452011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		800B6D1A2A8BF8E600452011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"barduino/Preview Content\"";
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduino;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		800B6D1B2A8BF8E600452011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"barduino/Preview Content\"";
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduino;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		800B6D1D2A8BF8E600452011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduinoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/barduino.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/barduino";
+			};
+			name = Debug;
+		};
+		800B6D1E2A8BF8E600452011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduinoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/barduino.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/barduino";
+			};
+			name = Release;
+		};
+		800B6D202A8BF8E600452011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduinoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = barduino;
+			};
+			name = Debug;
+		};
+		800B6D212A8BF8E600452011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39N7896SN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rafaelgorayb.barduinoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = barduino;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		800B6CF02A8BF8E400452011 /* Build configuration list for PBXProject "barduino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800B6D172A8BF8E600452011 /* Debug */,
+				800B6D182A8BF8E600452011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800B6D192A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800B6D1A2A8BF8E600452011 /* Debug */,
+				800B6D1B2A8BF8E600452011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800B6D1C2A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduinoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800B6D1D2A8BF8E600452011 /* Debug */,
+				800B6D1E2A8BF8E600452011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800B6D1F2A8BF8E600452011 /* Build configuration list for PBXNativeTarget "barduinoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800B6D202A8BF8E600452011 /* Debug */,
+				800B6D212A8BF8E600452011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 800B6CED2A8BF8E400452011 /* Project object */;
+}
