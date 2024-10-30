@@ -8,7 +8,7 @@
 import Foundation
 
 class EmbeddingService {
-    private let apiKey = "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"
+    private let apiKey = "INSERT-YPUR-OpenAi-API-KEY-HERE"
 
     func getEmbedding(for text: String, completion: @escaping ([Double]?) -> Void) {
         let url = URL(string: "https://api.openai.com/v1/embeddings")!
